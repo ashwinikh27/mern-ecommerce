@@ -6,6 +6,7 @@ function App() {
 
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
     fetchProducts();
@@ -26,6 +27,24 @@ function App() {
   };
 
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+
+  const placeOrder = () => {
+
+  if(cart.length === 0){
+    alert("Cart is empty");
+    return;
+  }
+
+  if(!address){
+    alert("Please enter shipping address");
+    return;
+  }
+
+  alert("Order placed successfully!");
+
+  setCart([]);
+  setAddress("");
+};
 
   return (
     <div style={{ padding: "20px" }}>
@@ -58,7 +77,20 @@ function App() {
       ))}
 
       <h3>Total: ₹{totalPrice}</h3>
+      <hr />
 
+<h2>Checkout</h2>
+
+<input
+  type="text"
+  placeholder="Enter shipping address"
+  value={address}
+  onChange={(e) => setAddress(e.target.value)}
+/>
+
+<button onClick={placeOrder}>
+  Place Order
+</button>
     </div>
   );
 }
