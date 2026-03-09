@@ -9,10 +9,11 @@ function ProductCard({ product }) {
       width: "200px"
     }}>
       <img
-        src={product.image}
-        alt={product.name}
-        width="150"
-      />
+  src={product.image}
+  alt={product.name}
+  width="150"
+  style={{ objectFit: "cover" }}
+/>
 
       <h3>{product.name}</h3>
 
