@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProductCard({ product }) {
+function ProductCard({ product, addToCart }) {
   return (
     <div style={{
       border: "1px solid #ddd",
@@ -9,17 +9,18 @@ function ProductCard({ product }) {
       width: "200px"
     }}>
       <img
-  src={product.image}
-  alt={product.name}
-  width="150"
-  style={{ objectFit: "cover" }}
-/>
+        src={product.image}
+        alt={product.name}
+        width="150"
+      />
 
       <h3>{product.name}</h3>
 
       <p>₹{product.price}</p>
 
-      <p>{product.category}</p>
+      <button onClick={() => addToCart(product)}>
+        Add to Cart
+      </button>
     </div>
   );
 }
