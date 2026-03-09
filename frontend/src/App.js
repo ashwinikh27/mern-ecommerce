@@ -28,7 +28,7 @@ function App() {
 
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
-  const placeOrder = () => {
+const placeOrder = async () => {
 
   if(cart.length === 0){
     alert("Cart is empty");
@@ -40,10 +40,25 @@ function App() {
     return;
   }
 
-  alert("Order placed successfully!");
+  try {
 
-  setCart([]);
-  setAddress("");
+    await axios.post("http://localhost:5000/api/orders", {
+      products: cart,
+      totalAmount: totalPrice,
+      address: address
+    });
+
+    alert("Order placed successfully!");
+
+    setCart([]);
+    setAddress("");
+
+  } catch (error) {
+
+    alert("Error placing order");
+
+  }
+
 };
 
   return (
