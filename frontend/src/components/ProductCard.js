@@ -2,25 +2,27 @@ import React from "react";
 
 function ProductCard({ product, addToCart }) {
   return (
-    <div style={{
-      border: "1px solid #ddd",
-      padding: "10px",
-      margin: "10px",
-      width: "200px"
-    }}>
+    <div className="bg-white shadow-md rounded-xl p-4 w-64 hover:shadow-xl transition">
+
       <img
         src={product.image}
         alt={product.name}
-        width="150"
+        className="h-40 w-full object-cover rounded-lg"
       />
 
-      <h3>{product.name}</h3>
+      <h3 className="text-lg font-semibold mt-3">{product.name}</h3>
 
-      <p>₹{product.price}</p>
+      <p className="text-blue-600 font-bold text-xl mt-1">
+        ₹{product.price}
+      </p>
 
-      <button onClick={() => addToCart(product)}>
+      <button
+        onClick={() => addToCart(product)}
+        className="mt-3 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+      >
         Add to Cart
       </button>
+
     </div>
   );
 }
